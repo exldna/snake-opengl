@@ -2,15 +2,55 @@
 // Created by asuka on 09.03.2023.
 //
 
+# include <glad/glad.h>
 # include <glfw_system.hpp>
+
 # include <window.hpp>
+# include <game.hpp>
+
+# include <iostream>
+# include <stdexcept>
 
 int main() {
     auto glfw = snake::GLFWSystem();
-    auto window = snake::Window({{800, 600}, "snake"});
+    auto window = snake::Window({{500, 500}, "snake"});
+
+    auto game = snake::Game();
+
+    const double upd = 2;
+    const double fps = 10;
+
+    double upd_rate = 1. / upd;
+    double fps_rate = 1. / fps;
+
+    double last_time, curr_time = glfw.get_time(),
+            upd_time_count = 0,
+            fps_time_count = 0;
+
+    bool should_redraw = false;
 
     while (!window.should_close()) {
-        glfw.pool_events();
-        window.swap_buffers();
+        last_time = curr_time;
+        curr_time = glfw.get_time();
+        auto duration = curr_time - last_time;
+        upd_time_count += duration;
+        fps_time_count += duration;
+
+        while (upd_time_count >= upd_rate) {
+            upd_time_count -= upd_rate;
+            if (!should_redraw) should_redraw = true;
+            glfw.pool_events();
+            game.update();
+        }
+
+        if (should_redraw && fps_time_count >= fps_rate) {
+            fps_time_count -= fps_rate;
+            glClear(GL_COLOR_BUFFER_BIT);
+            game.draw();
+            window.swap_buffers();
+            should_redraw = false;
+        }
     }
+
+    return 0;
 }

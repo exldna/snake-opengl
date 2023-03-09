@@ -32,4 +32,8 @@ namespace snake {
         glfwPollEvents();
     }
 
+    double GLFWSystem::get_time() const noexcept {
+        return glfwGetTime();
+    }
+
 }

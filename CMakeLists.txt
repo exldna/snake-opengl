@@ -3,15 +3,26 @@ project(snake CXX)
 
 set(SNAKE_SOURCES
     main.cpp
-    glfw_system.hpp
-    glfw_system.cpp
-    window.hpp
-    window.cpp
-    snake.hpp snake.cpp)
+    game.hpp game.cpp
+    board.hpp board.cpp
+    snake.hpp snake.cpp
+    snake_renderer.hpp snake_renderer.cpp
+    glfw_system.hpp glfw_system.cpp
+    window.hpp window.cpp
+    make_program.cpp make_program.hpp)
 
 add_executable(snake ${SNAKE_SOURCES})
 target_compile_features(snake PUBLIC cxx_std_20)
 target_include_directories(snake PUBLIC .)
+
+add_custom_target(copy_shaders
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/shaders
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/shaders ${CMAKE_CURRENT_BINARY_DIR}/shaders
+    COMMENT "copying ${CMAKE_CURRENT_SOURCE_DIR}/shaders to ${CMAKE_CURRENT_BINARY_DIR}/shaders"
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    )
+
+add_dependencies(snake copy_shaders)
 
 find_package(glfw3 REQUIRED)
 target_link_libraries(snake glfw)

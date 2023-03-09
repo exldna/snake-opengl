@@ -21,6 +21,7 @@ namespace snake {
         static bool is_initialized() noexcept;
 
         void pool_events() const noexcept;
+        [[nodiscard]] double get_time() const noexcept;
 
     private:
         static inline bool is_initialized_ = false;
