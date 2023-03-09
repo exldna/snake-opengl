@@ -17,7 +17,7 @@ find_package(glfw3 REQUIRED)
 target_link_libraries(snake glfw)
 
 find_package(glad REQUIRED)
-target_link_libraries(snake glad)
+target_link_libraries(snake glad::glad)
 
 find_package(OpenGL REQUIRED)
 target_link_libraries(snake OpenGL::GL)
