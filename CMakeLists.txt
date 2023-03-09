@@ -7,7 +7,7 @@ set(SNAKE_SOURCES
     glfw_system.cpp
     window.hpp
     window.cpp
-    )
+    snake.hpp snake.cpp)
 
 add_executable(snake ${SNAKE_SOURCES})
 target_compile_features(snake PUBLIC cxx_std_20)
