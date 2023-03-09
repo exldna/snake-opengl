@@ -28,4 +28,8 @@ namespace snake {
         return is_initialized_;
     }
 
+    void GLFWSystem::pool_events() const noexcept {
+        glfwPollEvents();
+    }
+
 }

@@ -44,4 +44,23 @@ namespace snake {
         }
     }
 
+    Window::Window(Window&& other) noexcept {
+        window_ = other.window_;
+        other.window_ = nullptr;
+    }
+
+    Window& Window::operator=(Window&& other) noexcept {
+        window_ = other.window_;
+        other.window_ = nullptr;
+        return *this;
+    }
+
+    bool Window::should_close() const {
+        return glfwWindowShouldClose(window_);
+    }
+
+    void Window::swap_buffers() const {
+        glfwSwapBuffers(window_);
+    }
+
 } // snake

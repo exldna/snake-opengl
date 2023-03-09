@@ -22,6 +22,15 @@ namespace snake {
         explicit Window(const DisplayData& display_data);
         ~Window();
 
+        Window(const Window&) = delete;
+        Window& operator=(const Window&) = delete;
+
+        Window(Window&& other) noexcept;
+        Window& operator=(Window&& other) noexcept;
+
+        [[nodiscard]] bool should_close() const;
+        void swap_buffers() const;
+
     private:
         GLFWwindow* window_ = nullptr;
     };

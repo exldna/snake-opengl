@@ -20,6 +20,8 @@ namespace snake {
 
         static bool is_initialized() noexcept;
 
+        void pool_events() const noexcept;
+
     private:
         static inline bool is_initialized_ = false;
     };
