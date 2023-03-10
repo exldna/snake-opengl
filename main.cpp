@@ -8,16 +8,13 @@
 # include <window.hpp>
 # include <game.hpp>
 
-# include <iostream>
-# include <stdexcept>
-
 int main() {
     auto glfw = snake::GLFWSystem();
     auto window = snake::Window({{500, 500}, "snake"});
 
-    auto game = snake::Game();
+    auto game = snake::Game(snake::KeysInput{window});
 
-    const double upd = 2;
+    const double upd = 4;
     const double fps = 10;
 
     double upd_rate = 1. / upd;
@@ -27,7 +24,7 @@ int main() {
             upd_time_count = 0,
             fps_time_count = 0;
 
-    bool should_redraw = false;
+    bool should_redraw = true;
 
     while (!window.should_close()) {
         last_time = curr_time;
@@ -36,19 +33,19 @@ int main() {
         upd_time_count += duration;
         fps_time_count += duration;
 
-        while (upd_time_count >= upd_rate) {
-            upd_time_count -= upd_rate;
-            if (!should_redraw) should_redraw = true;
-            glfw.pool_events();
-            game.update();
-        }
-
         if (should_redraw && fps_time_count >= fps_rate) {
             fps_time_count -= fps_rate;
             glClear(GL_COLOR_BUFFER_BIT);
             game.draw();
             window.swap_buffers();
             should_redraw = false;
+        }
+
+        while (upd_time_count >= upd_rate) {
+            upd_time_count -= upd_rate;
+            if (!should_redraw) should_redraw = true;
+            glfw.pool_events();
+            game.update();
         }
     }
 

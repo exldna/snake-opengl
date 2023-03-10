@@ -3,16 +3,16 @@
 //
 
 # include <game.hpp>
-# include <glad/glad.h>
 
 namespace snake {
 
-    Game::Game() {
-    }
+    Game::Game(KeysInput keys_input)
+            : keys_input_(keys_input) {}
 
     void Game::update() {
-        if (!snake_.move(SnakeMove::up)) {
-            std::exit(0);
+        snake_controller_.update(keys_input_);
+        if (!snake_.validate()) {
+            exit(0);
         }
     }
 

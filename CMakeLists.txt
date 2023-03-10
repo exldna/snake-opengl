@@ -6,10 +6,14 @@ set(SNAKE_SOURCES
     game.hpp game.cpp
     board.hpp board.cpp
     snake.hpp snake.cpp
+    snake_controller.hpp snake_controller.cpp
     snake_renderer.hpp snake_renderer.cpp
     glfw_system.hpp glfw_system.cpp
     window.hpp window.cpp
-    make_program.cpp make_program.hpp)
+    virtual_keys.hpp
+    keys_input.hpp keys_input.cpp
+    make_program.cpp make_program.hpp
+    )
 
 add_executable(snake ${SNAKE_SOURCES})
 target_compile_features(snake PUBLIC cxx_std_20)

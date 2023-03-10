@@ -11,10 +11,9 @@ namespace snake {
     Snake::Snake(Board& board, glm::ivec2 head)
             : board_(board), head_(head) {}
 
-    bool Snake::move(SnakeMove move) {
+    void Snake::move(SnakeMove move) {
         move_tail();
         move_head(move);
-        return validate();
     }
 
     void Snake::move_head(SnakeMove move) {

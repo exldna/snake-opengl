@@ -42,11 +42,11 @@ namespace snake {
         glNamedBufferData(buffer_, bytes_buffer_size, nullptr, GL_DYNAMIC_DRAW);
         auto* buffer_ptr = reinterpret_cast<glm::vec2*>(glMapNamedBuffer(buffer_, GL_WRITE_ONLY));
         buffer_ptr[0] = snake_.head_;
-        for (std::ptrdiff_t i = 0; i < snake_.tail_.size(); ++i) {
+        for (std::size_t i = 0; i < snake_.tail_.size(); ++i) {
             buffer_ptr[i + 1] = snake_.tail_[i];
         }
         glUnmapNamedBuffer(buffer_);
-        // draw buffer
+        // call draw
         glUseProgram(program_);
         glBindVertexArray(vertex_array_);
         glDrawArrays(GL_POINTS, 0, 3);

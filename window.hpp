@@ -17,7 +17,11 @@ namespace snake {
         std::string title;
     };
 
+    class KeysInput;
+
     class Window {
+        friend KeysInput;
+
     public:
         explicit Window(const DisplayData& display_data);
         ~Window();

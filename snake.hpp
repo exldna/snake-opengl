@@ -29,14 +29,14 @@ namespace snake {
         Snake(Snake&&) noexcept = delete;
         Snake& operator=(Snake&&) noexcept = delete;
 
-        bool move(SnakeMove move);
+        void move(SnakeMove move);
+        [[nodiscard]] bool validate() const;
 
     private:
-        Board& board_;
 
+        Board& board_;
         void move_head(SnakeMove move);
         void move_tail();
-        [[nodiscard]] bool validate() const;
 
         glm::ivec2 head_ = {5, 7};
         std::deque<glm::ivec2> tail_{
