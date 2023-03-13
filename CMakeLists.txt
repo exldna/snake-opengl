@@ -13,7 +13,7 @@ set(
     virtual_keys.hpp
     keys_input.hpp keys_input.cpp
     make_program.cpp make_program.hpp
-    runtime.cpp runtime.hpp renderer.cpp renderer.hpp)
+    runtime.cpp runtime.hpp renderer.cpp renderer.hpp snake_renderer.cpp snake_renderer.hpp)
 
 add_executable(snake ${SNAKE_SOURCES})
 target_include_directories(snake PUBLIC .)

@@ -27,6 +27,9 @@ namespace snake {
         void input();
         void update();
 
+        Snake& get_snake();
+        Board& get_board();
+
     private:
         KeysInput keys_input_;
         Board board_{};

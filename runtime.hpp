@@ -8,6 +8,7 @@
 # include <glfw_system.hpp>
 # include <window.hpp>
 # include <game.hpp>
+# include <renderer.hpp>
 
 namespace snake {
 
@@ -35,6 +36,7 @@ namespace snake {
         Window window_{{{500, 500}, "Snake"}};
         KeysInput keys_input_{window_};
         Game game_{keys_input_};
+        Renderer renderer_{game_.get_board(), game_.get_snake()};
     };
 
 } // snake

@@ -24,6 +24,7 @@ namespace snake {
             if (should_redraw && fps_time_count >= fps_rate_) {
                 fps_time_count -= fps_rate_;
                 glClear(GL_COLOR_BUFFER_BIT);
+                renderer_.draw();
                 window_.swap_buffers();
                 should_redraw = false;
             }

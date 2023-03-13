@@ -20,4 +20,12 @@ namespace snake {
         }
     }
 
+    Snake& Game::get_snake() {
+        return snake_;
+    }
+
+    Board& Game::get_board() {
+        return board_;
+    }
+
 } // snake
