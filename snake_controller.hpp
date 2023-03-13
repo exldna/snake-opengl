@@ -14,8 +14,16 @@ namespace snake {
     class SnakeController {
     public:
         explicit SnakeController(Snake& snake);
+        ~SnakeController() = default;
 
-        void update(const KeysInput& keys_input);
+        SnakeController(const SnakeController&) = delete;
+        SnakeController& operator=(const SnakeController&) = delete;
+
+        SnakeController(SnakeController&&) noexcept = delete;
+        SnakeController& operator=(SnakeController&&) noexcept = delete;
+
+        void input(const KeysInput& keys_input);
+        void update();
 
     private:
         Snake& snake_;

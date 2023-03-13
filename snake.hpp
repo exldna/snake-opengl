@@ -33,16 +33,12 @@ namespace snake {
         [[nodiscard]] bool validate() const;
 
     private:
-
         Board& board_;
         void move_head(SnakeMove move);
         void move_tail();
 
-        glm::ivec2 head_ = {5, 7};
-        std::deque<glm::ivec2> tail_{
-                {5, 6},
-                {5, 5}
-        };
+        glm::ivec2 head_ = {0, 0};
+        std::deque<glm::ivec2> tail_{};
     };
 
 } // snake

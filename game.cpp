@@ -9,15 +9,15 @@ namespace snake {
     Game::Game(KeysInput keys_input)
             : keys_input_(keys_input) {}
 
+    void Game::input() {
+        snake_controller_.input(keys_input_);
+    }
+
     void Game::update() {
-        snake_controller_.update(keys_input_);
+        snake_controller_.update();
         if (!snake_.validate()) {
             exit(0);
         }
-    }
-
-    void Game::draw() {
-        snake_renderer_.draw();
     }
 
 } // snake
