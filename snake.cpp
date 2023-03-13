@@ -4,15 +4,20 @@
 
 # include <snake.hpp>
 # include <board.hpp>
+# include <apple.hpp>
 # include <algorithm>
 
 namespace snake {
 
-    Snake::Snake(Board& board, glm::ivec2 head)
-            : board_(board), head_(head) {}
+    Snake::Snake(Board& board, Apple& apple, glm::ivec2 head)
+            : board_(board), apple_(apple), head_(head) {}
 
     void Snake::move(SnakeMove move) {
-        move_tail();
+        if (should_move_tail_) {
+            move_tail();
+        } else {
+            should_move_tail_ = true;
+        }
         move_head(move);
     }
 
@@ -42,12 +47,20 @@ namespace snake {
         }
     }
 
+    void Snake::try_eat() {
+        if (head_ == apple_.get_position()) {
+            tail_.push_front(head_);
+            should_move_tail_ = false;
+            apple_.update();
+        }
+    }
+
     bool Snake::validate() const {
         bool head_didnt_crushed_into_tail = std::ranges::none_of(tail_.begin(), tail_.end(),
                 [this](glm::ivec2 item) { return item == head_; });
         bool head_didnt_out_of_board = (head_.x >= 0 && head_.x < board_.get_size().x) &&
                                        (head_.y >= 0 && head_.y < board_.get_size().y);
-        return head_didnt_crushed_into_tail && head_didnt_out_of_board;
+        return head_didnt_crushed_into_tail && head_didnt_out_of_board || (!should_move_tail_);
     }
 
 } // snake

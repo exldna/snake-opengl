@@ -10,6 +10,7 @@
 # include <board.hpp>
 # include <snake.hpp>
 # include <snake_controller.hpp>
+# include <apple.hpp>
 
 namespace snake {
 
@@ -27,13 +28,15 @@ namespace snake {
         void input();
         void update();
 
-        Snake& get_snake();
         Board& get_board();
+        Apple& get_apple();
+        Snake& get_snake();
 
     private:
         KeysInput keys_input_;
         Board board_{};
-        Snake snake_{board_, {5, 7}};
+        Apple apple_{board_};
+        Snake snake_{board_, apple_, {5, 7}};
         SnakeController snake_controller_{snake_};
     };
 

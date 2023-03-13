@@ -27,7 +27,7 @@ namespace snake {
 
     private:
         const double upd_ = 4;
-        const double fps_ = 10;
+        const double fps_ = 4;
 
         const double upd_rate_ = 1. / upd_;
         const double fps_rate_ = 1. / fps_;
@@ -36,7 +36,7 @@ namespace snake {
         Window window_{{{500, 500}, "Snake"}};
         KeysInput keys_input_{window_};
         Game game_{keys_input_};
-        Renderer renderer_{game_.get_board(), game_.get_snake()};
+        Renderer renderer_{game_};
     };
 
 } // snake

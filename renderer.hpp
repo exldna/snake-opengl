@@ -6,15 +6,15 @@
 # define SNAKE_RENDERER_HPP
 
 # include <snake_renderer.hpp>
+# include <apple_renderer.hpp>
 
 namespace snake {
 
-    class Board;
-    class Snake;
+    class Game;
 
     class Renderer {
     public:
-        Renderer(Board& board, Snake& snake);
+        explicit Renderer(Game& game);
         ~Renderer();
 
         Renderer(const Renderer&) = delete;
@@ -27,8 +27,10 @@ namespace snake {
 
     private:
         SnakeRenderer snake_renderer_;
+        AppleRenderer apple_renderer_;
 
         unsigned int program_ = 0;
+        int color_loc_ = 0;
     };
 
 } // snake

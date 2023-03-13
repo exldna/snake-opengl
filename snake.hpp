@@ -11,6 +11,7 @@
 namespace snake {
 
     class Board;
+    class Apple;
     class SnakeRenderer;
 
     enum class SnakeMove : std::uint8_t {
@@ -20,7 +21,7 @@ namespace snake {
     class Snake {
         friend SnakeRenderer;
     public:
-        Snake(Board& board, glm::ivec2 head);
+        Snake(Board& board, Apple& apple, glm::ivec2 head);
         ~Snake() = default;
 
         Snake(const Snake&) = delete;
@@ -30,15 +31,19 @@ namespace snake {
         Snake& operator=(Snake&&) noexcept = delete;
 
         void move(SnakeMove move);
+        void try_eat();
         [[nodiscard]] bool validate() const;
 
     private:
         Board& board_;
-        void move_head(SnakeMove move);
-        void move_tail();
+        Apple& apple_;
 
+        bool should_move_tail_ = true;
         glm::ivec2 head_ = {0, 0};
         std::deque<glm::ivec2> tail_{};
+
+        void move_head(SnakeMove move);
+        void move_tail();
     };
 
 } // snake
