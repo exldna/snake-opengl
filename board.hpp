@@ -27,7 +27,7 @@ namespace snake {
         [[nodiscard]] glm::ivec2 get_size() const noexcept;
 
     private:
-        glm::ivec2 size_ = {20, 20};
+        glm::ivec2 size_ = {40, 40};
     };
 
 }

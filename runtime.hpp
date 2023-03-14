@@ -26,8 +26,8 @@ namespace snake {
         void run();
 
     private:
-        const double upd_ = 4;
-        const double fps_ = 4;
+        const double upd_ = 6;
+        const double fps_ = 10;
 
         const double upd_rate_ = 1. / upd_;
         const double fps_rate_ = 1. / fps_;
